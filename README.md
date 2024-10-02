@@ -45,4 +45,4 @@ Mini PlayStation adalah koleksi game sederhana yang dibuat oleh [Saya](https://g
 
 ## Kontak
 
-Jika Anda memiliki pertanyaan atau saran, silakan hubungi saya di[Lamberth Rumpaidus](https://github.com/lamberthrumpaidus).
+Jika Anda memiliki pertanyaan atau saran, silakan hubungi saya di [sini](https://github.com/lamberthrumpaidus).
