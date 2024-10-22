@@ -177,7 +177,7 @@ void playSnake() {
         else if (direction == 'R') snakeX++;
 
         // Cek makanan
-        if (snakeX == food X && snakeY == foodY) {
+        if (snakeX == foodX && snakeY == foodY) {
             snakeLength++;
             foodX = rand() % 10;
             foodY = rand() % 10;
@@ -288,27 +288,34 @@ void playMemory() {
     vector<int> cards = {1, 2, 1, 2, 3, 4, 3, 4}; // Contoh sederhana
     random_shuffle(cards.begin(), cards.end());
 
-    cout << "Teb ak pasangan kartu (1-4): " << endl;
+    vector<bool> revealed(cards.size(), false);
+    int firstGuess = -1, secondGuess = -1;
+
     for (int i = 0; i < 2; ++i) {
+        cout << "Tebak pasangan kartu (1-4): " << endl;
         int guess = getValidChoice(1, 4);
-        cout << "Anda memilih kartu: " << guess << endl;
+        guess--; // Menyesuaikan index
+
+        cout << "Anda memilih kartu: " << guess + 1 << endl;
 
         // Logika pencocokan pasangan
-        for (int j = 0; j < cards.size(); ++j) {
-            if (cards[j] == guess) {
-                cout << "Kartu yang dipilih: " << cards[j] << endl;
-                cards.erase(cards.begin() + j);
-                break;
+        if (cards[guess] == firstGuess) {
+            cout << "Kartu yang dipilih: " << cards[guess] << endl;
+            revealed[guess] = true;
+            if (i == 1) {
+                cout << (language == "Indonesian" ? "Anda menang!" : "You win!") << endl;
+                return;
+            }
+        } else {
+            if (i == 0) {
+                firstGuess = cards[guess];
+            } else {
+                secondGuess = cards[guess];
             }
         }
     }
 
-    // Cek apakah pasangan kartu cocok
-    if (cards.size() == 0) {
-        cout << (language == "Indonesian" ? "Anda menang!" : "You win!") << endl;
-    } else {
-        cout << (language == "Indonesian" ? "Anda kalah!" : "You lose!") << endl;
-    }
+    cout << (language == "Indonesian" ? "Anda kalah!" : "You lose!") << endl;
 }
 
 // Game 10: Ular Tangga
